@@ -31,6 +31,7 @@
 #include "bmi270sensor.h"
 #include "icm20948sensor.h"
 #include "icm42688sensor.h"
+#include "lsm6dsvSensor.h"
 #include "ErroneousSensor.h"
 #include "sensoraddresses.h"
 #include "GlobalVars.h"
@@ -120,6 +121,10 @@ namespace SlimeVR
                 } else {
                     sensor = new BMI270Sensor(sensorID, address, rotation, sclPin, sdaPin, axisRemap);
                 }
+            case IMU_LSM6DSV:
+                {
+                uint8_t intPin = extraParam;
+                sensor = new LSM6DSVSensor(sensorID, imuType, address, rotation, sclPin, sdaPin, intPin);
                 }
                 break;
             default:
